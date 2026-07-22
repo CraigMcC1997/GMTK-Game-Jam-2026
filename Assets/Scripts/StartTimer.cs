@@ -8,44 +8,20 @@ public class StartTimer : MonoBehaviour
     public TMP_Text timerText;
     public int remainingTime = 3;
     bool IntroTimerFinished = false;
+    
+    public GameObject IntroTimerUI;
+    public AnimationCurve popCurve;
 
     public bool GetIntroTimerFinished()
     {
-        return IntroTimerFinished;
+        return IntroTimerFinished || !IntroTimerUI.activeSelf;
     }
  
     void Start()
     {
-        gameObject.SetActive(true);
-        //timerText.text = remainingTime.ToString();
+        IntroTimerUI.SetActive(true);
         StartCoroutine(ShowCountdown());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    //     // Game Over, early exit to avoid further updates
-    //     if (IntroTimerFinished)
-    //     {
-    //         gameObject.SetActive(false);
-    //     }
-    //     else
-    //     {
-    //         // check for game over condition otherwise countdown the timer
-    //         if (remainingTime <= 0)
-    //         {
-    //             remainingTime = 0;  // Ensure remainingTime doesn't go below 0
-    //             IntroTimerFinished = true;
-    //         }
-    //         else
-    //         {
-    //             remainingTime -= 1;
-    //             timerText.text = remainingTime.ToString();
-    //         }
-    //     }
-    }
-
-    public AnimationCurve popCurve;
 
     public IEnumerator ShowCountdown()
     {
@@ -58,7 +34,7 @@ public class StartTimer : MonoBehaviour
         timerText.text = "GO!";
         yield return StartCoroutine(PopText());
         IntroTimerFinished = true;
-        gameObject.SetActive(false);
+        IntroTimerUI.SetActive(false);
     }
 
     IEnumerator PopText()
