@@ -34,6 +34,13 @@ public class FollowMouse : MonoBehaviour
         //     return;
         // }
 
+        // if mouse close to the player, stop moving
+        if (Vector2.Distance(mousePosition, rb.position) < gameObject.GetComponent<CircleCollider2D>().radius)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+        
         Vector2 direction = mousePosition - rb.position;
         rb.linearVelocity = direction.normalized * speed;
     }
