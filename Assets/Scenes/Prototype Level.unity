@@ -150,6 +150,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   timerText: {fileID: 1822097962}
   remainingTime: 3
+  popCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.678869
+      outSlope: 5.678869
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.35131225
+      value: 1.9950562
+      inSlope: -0.5276383
+      outSlope: -0.5276383
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.42258748
+      outWeight: 0.25376445
+    - serializedVersion: 3
+      time: 0.7
+      value: 1.8
+      inSlope: 0.9206097
+      outSlope: 0.9206097
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.23424132
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -2.7509882
+      outSlope: -2.7509882
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18710911
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &58577756
 Transform:
   m_ObjectHideFlags: 0
@@ -159,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 58577754}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.65284, y: 2.40009, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2268,7 +2310,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2323,15 +2365,15 @@ RectTransform:
   m_GameObject: {fileID: 1822097961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.1459, y: 2.1459, z: 2.1459}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 462545476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.2, y: 76.1}
-  m_SizeDelta: {x: 47.23, y: 50}
+  m_AnchoredPosition: {x: 0, y: 70.3}
+  m_SizeDelta: {x: 89.99, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1885432035
 GameObject:
