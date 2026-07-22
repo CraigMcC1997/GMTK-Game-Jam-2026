@@ -13,6 +13,8 @@ public class CountDownTimer : MonoBehaviour
     public float flashSpeed = 4f;
     bool countdownFinished = false;
 
+    public StartTimer startTimer; // Reference to the Game Over screen
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +24,11 @@ public class CountDownTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (startTimer != null && !startTimer.GetIntroTimerFinished())
+        {
+            return;
+        }
+        
         // Game Over, early exit to avoid further updates
         if (countdownFinished)
         {
