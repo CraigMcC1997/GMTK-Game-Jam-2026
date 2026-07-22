@@ -8,6 +8,8 @@ public class CountDownTimer : MonoBehaviour
 
     public Color normalColor = Color.white;
     public Color warningColor = Color.red;
+
+    public float flashStartTime = 10f;
     public float flashSpeed = 4f;
     bool countdownFinished = false;
 
@@ -39,16 +41,19 @@ public class CountDownTimer : MonoBehaviour
                 remainingTime -= Time.deltaTime;
             }
 
-            timerText.text = remainingTime.ToString("F2");
 
-            if (remainingTime <= 10f)
+            // Ramp up stress by flashing timer and display milliseconds 
+            if (remainingTime < flashStartTime)
             {
+                timerText.text = remainingTime.ToString("F2");
+
                 timerText.color = (Mathf.FloorToInt(Time.time * flashSpeed) % 2 == 0)
                     ? warningColor
                     : normalColor;
             }
             else
             {
+                timerText.text = remainingTime.ToString("F1");
                 timerText.color = normalColor;
             }
         }
