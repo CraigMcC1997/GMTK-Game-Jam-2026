@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     int currentSpeed;
     int currentShield;
 
+    Transform shield;
+
     public FollowMouse followMouse;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +24,12 @@ public class PlayerManager : MonoBehaviour
         SetSpeedValue();
 
         currentShield = 2 * PlayerPrefs.GetInt("ShieldSlotsUsed", 0);
+
+        shield = transform.Find("Shield");
+        if (shield != null)
+        {
+            shield.gameObject.SetActive(false);
+        }
 
     }
 
@@ -72,16 +80,27 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        //!!!! TESTING PURPOSES ONLY, REMOVE LATER
+        if (Keyboard.current.dKey.wasPressedThisFrame)
         {
             playerTakesDamage(1);
         }
 
-        //!!!! TESTING PURPOSES ONLY, REMOVE LATER
+        if (Keyboard.current.sKey.wasPressedThisFrame)
+        {
+            shield.gameObject.SetActive(!shield.gameObject.activeSelf);
+        }
+
+
         // enter to increase coin count by 1
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {
-            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 1);
+            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 10);
+            coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
+        }
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            PlayerPrefs.SetInt("CoinCount", 0);
             coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
         }
     }

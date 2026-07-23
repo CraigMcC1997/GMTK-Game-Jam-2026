@@ -14,12 +14,6 @@ public class ButtonManager : MonoBehaviour
 
     void Start()
     {
-        //!!!!! TMP reset slots for testing purposes, remove later !!!!!!!
-        PlayerPrefs.SetInt("HealthSlotsUsed", 0);
-        PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
-        PlayerPrefs.SetInt("SpeedSlotsUsed", 0);
-
-        int currentCoins = PlayerPrefs.GetInt("CoinCount", 0);
         coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
     }
 
