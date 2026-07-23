@@ -16,6 +16,7 @@ public class DoorManager : MonoBehaviour
         {
             doorAnimator.SetTrigger("Open");
             keysManager.UseKey();
+            Debug.Log("Used a key to open the door. Remaining: " + PlayerPrefs.GetInt("KeyCount", 0));
             gameObject.GetComponent<Collider2D>().enabled = false; // Disable the collider to allow passage
         }
     }
@@ -26,8 +27,6 @@ public class DoorManager : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KeyCount", 0) > 0)
             {
-                PlayerPrefs.SetInt("KeyCount", PlayerPrefs.GetInt("KeyCount", 0) - 1);
-                Debug.Log("Used a key to open the door. Remaining: " + PlayerPrefs.GetInt("KeyCount", 0));
                 OpenDoor();
             }
             else
