@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public Slider healthBar;
 
     public TMP_Text coinsText;
+    public KeysManager keysManager;
 
     int currentSpeed;
     int currentShield;
@@ -81,6 +82,12 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Spikes"))
         {
             playerTakesDamage(1);
+        }
+
+        if (collision.gameObject.name == "Key")
+        {
+            Destroy(collision.gameObject);
+            keysManager.CollectedKey();
         }
     }
 
