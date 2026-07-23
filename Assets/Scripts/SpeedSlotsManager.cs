@@ -21,6 +21,11 @@ public class SpeedSlotsManager : MonoBehaviour
         return speedSlots;
     }
 
+    public int GetMaxSpeed()
+    {
+        return MAX_SPEED;
+    }
+
     // Update is called once per frame
     void Update()
     {

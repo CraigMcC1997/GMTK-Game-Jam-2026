@@ -419,7 +419,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 204970387}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1224242387}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: UpdateHealthSlots
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &204970387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1388,7 +1400,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 635138775}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1224242387}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: UpdateShieldSlots
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &635138775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1646,7 +1670,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 764947105}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1224242387}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: UpdateSpeedSlots
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &764947105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2207,6 +2243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3679cca7d549c3e13b3f2dfefe157bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  healthSlotsManager: {fileID: 2083910365}
+  speedSlotsManager: {fileID: 134299773}
+  shieldSlotsManager: {fileID: 1757447279}
 --- !u!4 &1224242388
 Transform:
   m_ObjectHideFlags: 0

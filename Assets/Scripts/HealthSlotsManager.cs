@@ -21,6 +21,11 @@ public class HealthSlotsManager : MonoBehaviour
         return healthSlots;
     }
 
+    public int GetMaxHealth()
+    {
+        return MAX_HEALTH;
+    }
+
     // Update is called once per frame
     void Update()
     {
