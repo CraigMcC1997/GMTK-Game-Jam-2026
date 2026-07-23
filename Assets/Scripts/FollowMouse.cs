@@ -7,6 +7,11 @@ public class FollowMouse : MonoBehaviour
     public float speed = 5f;
 
     public StartTimer startTimer;
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,14 +30,6 @@ public class FollowMouse : MonoBehaviour
         {
             return;
         }
-
-        // // Don't move if the mouse is off-screen
-        // if (Input.mousePosition.x < 0 || Input.mousePosition.x > Screen.width ||
-        //     Input.mousePosition.y < 0 || Input.mousePosition.y > Screen.height)
-        // {
-        //     rb.linearVelocity = Vector2.zero;
-        //     return;
-        // }
 
         // if mouse close to the player, stop moving
         if (Vector2.Distance(mousePosition, rb.position) < gameObject.GetComponent<CircleCollider2D>().radius)

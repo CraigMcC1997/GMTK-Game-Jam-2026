@@ -33,7 +33,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < healthUpgradeSlotsUsed; i++)
         {
-            healthSlots[i].GetComponent<Renderer>().material.color = Color.green; // change color of used slots to green
+            healthSlotsManager.setPurchasedColor(i);
         }
     }
 
@@ -53,7 +53,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < speedUpgradeSlotsUsed; i++)
         {
-            speedSlots[i].GetComponent<Renderer>().material.color = Color.blue; // change color of used slots to green
+            speedSlotsManager.setPurchasedColor(i);
         }
     }
 
@@ -73,7 +73,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < shieldUpgradeSlotsUsed; i++)
         {
-            shieldSlots[i].GetComponent<Renderer>().material.color = Color.yellow; // change color of used slots to green
+            shieldSlotsManager.setPurchasedColor(i);
         }
     }
 

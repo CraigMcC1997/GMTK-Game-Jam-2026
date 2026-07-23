@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -37,9 +38,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void LoadMainMenu()
+    public void LoadUpgradesScreen()
     {
         Resume();
+        SceneManager.LoadScene("Scenes/Upgrades Window");
     }
 
     public void ExitGame()

@@ -9,11 +9,23 @@ public class SpeedSlotsManager : MonoBehaviour
 
     void Start()
     {
+        int speedUpgradeSlotsUsed = PlayerPrefs.GetInt("SpeedSlotsUsed", 0);
+
         for (int i = 0; i < MAX_SPEED; i++)
         {
             speedSlots.Add(Instantiate(box));
             speedSlots[i].transform.position = new Vector3(transform.position.x + (i * 0.4f), transform.position.y, 5);
+
+            if (i < speedUpgradeSlotsUsed)
+            {
+                setPurchasedColor(i);
+            }
         }
+    }
+
+    public void setPurchasedColor(int i)
+    {
+        speedSlots[i].GetComponent<Renderer>().material.color = Color.blue; // change color of used slots to blue
     }
 
     public List<GameObject> GetSpeedSlots()
