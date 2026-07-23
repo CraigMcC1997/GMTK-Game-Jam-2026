@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using TMPro;
 
 public class ButtonManager : MonoBehaviour
 {
     public HealthSlotsManager healthSlotsManager;
     public SpeedSlotsManager speedSlotsManager;
     public ShieldSlotsManager shieldSlotsManager;
+
+    public TMP_Text coinsText;
     
 
     void Start()
@@ -15,10 +18,38 @@ public class ButtonManager : MonoBehaviour
         PlayerPrefs.SetInt("HealthSlotsUsed", 0);
         PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
         PlayerPrefs.SetInt("SpeedSlotsUsed", 0);
+
+        int currentCoins = PlayerPrefs.GetInt("CoinCount", 0);
+        coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
+    }
+
+    bool Spend(int value)
+    {
+        int currentCoins = PlayerPrefs.GetInt("CoinCount", 0);
+        if (currentCoins >= value)
+        {
+            PlayerPrefs.SetInt("CoinCount", currentCoins - value);
+            if (coinsText != null)
+            {
+                coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
+            }
+            return true;
+        }
+        else
+        {
+            Debug.Log("Not enough coins.");
+            return false;
+        }
     }
 
     public void UpdateHealthSlots()
     {
+        int SpendValue = 10; // cost to upgrade health slot
+        if (!Spend(SpendValue))
+        {
+            return; // not enough coins, exit the function
+        }
+        
         List<GameObject> healthSlots = healthSlotsManager.GetHealthSlots(); // get slots to update
         int healthUpgradeSlotsUsed = PlayerPrefs.GetInt("HealthSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
@@ -39,6 +70,12 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateSpeedSlots()
     {
+        int SpendValue = 10; // cost to upgrade health slot
+        if (!Spend(SpendValue))
+        {
+            return; // not enough coins, exit the function
+        }
+        
         List<GameObject> speedSlots = speedSlotsManager.GetSpeedSlots(); // get slots to update
         int speedUpgradeSlotsUsed = PlayerPrefs.GetInt("SpeedSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
@@ -59,6 +96,13 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateShieldSlots()
     {
+        int SpendValue = 10; // cost to upgrade health slot
+        if (!Spend(SpendValue))
+        {
+            return; // not enough coins, exit the function
+        }
+        
+
         List<GameObject> shieldSlots = shieldSlotsManager.GetShieldSlots(); // get slots to update
         int shieldUpgradeSlotsUsed = PlayerPrefs.GetInt("ShieldSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
