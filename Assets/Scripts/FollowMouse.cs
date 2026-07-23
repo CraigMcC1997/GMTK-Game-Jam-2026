@@ -6,14 +6,19 @@ public class FollowMouse : MonoBehaviour
     Rigidbody2D rb;
     public float speed = 5f;
 
-    public StartTimer startTimer;
+    bool isFollowingMouse = true;
+
+    public void SetFollowingMouse(bool follow)
+    {
+        isFollowingMouse = follow;
+    }
+
 
     public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;
     }
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,8 +31,9 @@ public class FollowMouse : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (startTimer != null && !startTimer.GetIntroTimerFinished())
+        if (!isFollowingMouse)
         {
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 

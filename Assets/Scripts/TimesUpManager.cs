@@ -8,11 +8,13 @@ public class TimesUpManager : MonoBehaviour
     public TMP_Text text;
     public int runTime = 3;
     
+    public FollowMouse player; // Reference to the FollowMouse script
     public GameObject IntroTimerUI;
     public AnimationCurve popCurve;
  
     void Start()
     {
+        player.SetFollowingMouse(false); // Disable mouse following when the timer starts
         IntroTimerUI.SetActive(true);
         StartCoroutine(ShowCountdown());
     }

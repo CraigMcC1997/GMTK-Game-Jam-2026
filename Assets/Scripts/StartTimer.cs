@@ -12,6 +12,8 @@ public class StartTimer : MonoBehaviour
     public GameObject IntroTimerUI;
     public AnimationCurve popCurve;
 
+    public FollowMouse player; // Reference to the FollowMouse script
+
     public bool GetIntroTimerFinished()
     {
         return IntroTimerFinished || !IntroTimerUI.activeSelf;
@@ -21,6 +23,11 @@ public class StartTimer : MonoBehaviour
     {
         IntroTimerUI.SetActive(true);
         StartCoroutine(ShowCountdown());
+
+        if (player != null)
+        {
+            player.SetFollowingMouse(false);
+        }
     }
 
     public IEnumerator ShowCountdown()
@@ -35,6 +42,10 @@ public class StartTimer : MonoBehaviour
         yield return StartCoroutine(PopText());
         IntroTimerFinished = true;
         IntroTimerUI.SetActive(false);
+        if (player != null)
+        {
+            player.SetFollowingMouse(true); // Enable mouse following after the countdown
+        }
     }
 
     IEnumerator PopText()
