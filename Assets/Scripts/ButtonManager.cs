@@ -11,11 +11,13 @@ public class ButtonManager : MonoBehaviour
     public ShieldSlotsManager shieldSlotsManager;
 
     public TMP_Text coinsText;
+    public TMP_Text attemptsText;
     
 
     void Start()
     {
         coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
+        attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
     }
 
     void Update()
@@ -26,6 +28,9 @@ public class ButtonManager : MonoBehaviour
             PlayerPrefs.SetInt("HealthSlotsUsed", 0);
             PlayerPrefs.SetInt("SpeedSlotsUsed", 0); 
             PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
+            PlayerPrefs.SetInt("numShields", 0);
+            PlayerPrefs.SetInt("Attempts", 0);
+            attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
 
             UpdateHealthSlots();
             UpdateSpeedSlots();
