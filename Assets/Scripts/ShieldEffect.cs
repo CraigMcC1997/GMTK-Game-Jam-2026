@@ -51,7 +51,7 @@ public class ShieldEffect : MonoBehaviour
         shieldRenderer.color = Color.white;
 
         // Expand slightly
-        transform.localScale = baseScale * 1.2f;
+        transform.localScale = baseScale * 1.6f;
 
         yield return new WaitForSeconds(0.1f);
 

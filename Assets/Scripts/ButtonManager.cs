@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -15,6 +16,21 @@ public class ButtonManager : MonoBehaviour
     void Start()
     {
         coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
+    }
+
+    void Update()
+    {
+        //!!!!! TESTING PURPOSES ONLY, REMOVE LATER
+        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
+        {
+            PlayerPrefs.SetInt("HealthSlotsUsed", 0);
+            PlayerPrefs.SetInt("SpeedSlotsUsed", 0); 
+            PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
+
+            UpdateHealthSlots();
+            UpdateSpeedSlots();
+            UpdateShieldSlots();
+        }
     }
 
     bool Spend(int value)

@@ -76,6 +76,14 @@ public class PlayerManager : MonoBehaviour
         //checkForDeath();
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spikes"))
+        {
+            playerTakesDamage(1);
+        }
+    }
+
     
     // Update is called once per frame
     void Update()
