@@ -22,6 +22,12 @@ public class CountDownTimer : MonoBehaviour
         timerText.text = remainingTime.ToString("F2");
     }
 
+    public bool stopTimer()
+    {
+        countdownFinished = true;
+        return countdownFinished;
+    }
+
     // Update is called once per frame
     void Update()
     {

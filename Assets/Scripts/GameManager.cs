@@ -4,10 +4,13 @@ public class GameManager : MonoBehaviour
 {
     public PlayerManager player;
     public DeathManager deathManager;
+    public GameObject pauseMenuUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PlayerPrefs.SetInt("Attempts", PlayerPrefs.GetInt("Attempts", 0) + 1);
+        //!!!!!! required when testing the intro timer
+        //pauseMenuUI.SetActive(true);
     }
 
     void Update()

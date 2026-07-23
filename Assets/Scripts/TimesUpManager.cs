@@ -9,6 +9,7 @@ public class TimesUpManager : MonoBehaviour
     public int runTime = 3;
     
     public FollowMouse player; // Reference to the FollowMouse script
+    public GameObject pauseMenuUI;
     public GameObject IntroTimerUI;
     public AnimationCurve popCurve;
  
@@ -16,6 +17,7 @@ public class TimesUpManager : MonoBehaviour
     {
         player.SetFollowingMouse(false); // Disable mouse following when the timer starts
         IntroTimerUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
         StartCoroutine(ShowCountdown());
     }
 

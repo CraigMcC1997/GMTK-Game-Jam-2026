@@ -9,6 +9,9 @@ public class DeathManager : MonoBehaviour
     public int runTime = 3;
     
     public FollowMouse player; // Reference to the FollowMouse script
+
+    public CountDownTimer countdownTimer; // Reference to the CountDownTimer script
+    public GameObject pauseMenuUI;
     public GameObject TimerUI;
     public AnimationCurve popCurve;
  
@@ -16,6 +19,8 @@ public class DeathManager : MonoBehaviour
     {
         player.SetFollowingMouse(false); // Disable mouse following when the timer starts
         TimerUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
+        countdownTimer.stopTimer(); // Stop the countdown timer when the player dies
         StartCoroutine(ShowCountdown());
     }
 
