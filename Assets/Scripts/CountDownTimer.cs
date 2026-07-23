@@ -4,7 +4,8 @@ using TMPro;
 public class CountDownTimer : MonoBehaviour
 {
     public TMP_Text timerText;
-    public float remainingTime = 30f;
+    public GameObject TimesUpScreen; // Reference to the TimesUpManager script
+    public float remainingTime = 15f;
 
     public Color normalColor = Color.white;
     public Color warningColor = Color.red;
@@ -32,7 +33,6 @@ public class CountDownTimer : MonoBehaviour
         // Game Over, early exit to avoid further updates
         if (countdownFinished)
         {
-            timerText.text = "Time's Up!";
             return;
         }
         else
@@ -42,12 +42,13 @@ public class CountDownTimer : MonoBehaviour
             {
                 remainingTime = 0;  // Ensure remainingTime doesn't go below 0
                 countdownFinished = true;
+                TimesUpScreen.SetActive(true);
+                timerText.text = "Time's Up!";
             }
             else
             {
                 remainingTime -= Time.deltaTime;
             }
-
 
             // Ramp up stress by flashing timer and display milliseconds 
             if (remainingTime < flashStartTime)

@@ -2340,7 +2340,7 @@ MonoBehaviour:
   speedSlotsManager: {fileID: 134299773}
   shieldSlotsManager: {fileID: 1757447279}
   coinsText: {fileID: 175212113}
-  attemptsText: {fileID: 0}
+  attemptsText: {fileID: 801530319}
 --- !u!4 &1224242388
 Transform:
   m_ObjectHideFlags: 0
