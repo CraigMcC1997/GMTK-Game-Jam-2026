@@ -37,10 +37,4 @@ public class ShieldSlotsManager : MonoBehaviour
     {
         return MAX_SHIELD;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

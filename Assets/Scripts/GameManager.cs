@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public PlayerManager player;
+    public DeathManager deathManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,6 +12,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (player.checkForDeath())
+        {
+            // Handle game over logic here
+            Debug.Log("Game Over");
+            deathManager.gameObject.SetActive(true);
+        }
     }
 }

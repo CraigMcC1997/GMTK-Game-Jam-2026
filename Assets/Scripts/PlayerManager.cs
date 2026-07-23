@@ -79,7 +79,14 @@ public class PlayerManager : MonoBehaviour
         //hitSound.Play(); // Play the hit sound effect
         currentHealth -= damage;
         UpdateHealthBar();
-        //checkForDeath();
+    }
+
+    public bool checkForDeath()
+    {
+        if (currentHealth <= 0)
+            return true;
+
+        return false;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -103,12 +110,6 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //!!!! TESTING PURPOSES ONLY, REMOVE LATER
-        if (Keyboard.current.dKey.wasPressedThisFrame)
-        {
-            playerTakesDamage(1);
-        }
-
         // Activate shield.
         if (Keyboard.current.sKey.wasPressedThisFrame)
         {
