@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
     int currentHealth;
     int startingHealth;
     public Slider healthBar;
+
+    public TMP_Text coinsText;
 
     int currentSpeed;
     int currentShield;
@@ -15,16 +18,41 @@ public class PlayerManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        startingHealth = 2 * PlayerPrefs.GetInt("HealthSlotsUsed", 0);
+        SetHealthValue();
+        SetSpeedValue();
+
+        currentShield = 2 * PlayerPrefs.GetInt("ShieldSlotsUsed", 0);
+
+    }
+
+    void SetHealthValue()
+    {
+        if (PlayerPrefs.GetInt("HealthSlotsUsed", 0) == 0)
+        {
+            startingHealth = 1;
+        }
+        else
+        {
+            startingHealth = 2 * PlayerPrefs.GetInt("HealthSlotsUsed", 0);
+        }
+        
         currentHealth = startingHealth;
         healthBar.maxValue = startingHealth;
         UpdateHealthBar();
+    }
 
-        currentSpeed = 2 * PlayerPrefs.GetInt("SpeedSlotsUsed", 0);
-        currentShield = 2 * PlayerPrefs.GetInt("ShieldSlotsUsed", 0);
-
-        if (currentSpeed != 0)
-            followMouse.SetSpeed(currentSpeed);
+    void SetSpeedValue()
+    {
+        if (PlayerPrefs.GetInt("SpeedSlotsUsed", 0) == 0)
+        {
+            currentSpeed = 5;
+        }
+        else
+        {
+            currentSpeed = 5 + (2 * PlayerPrefs.GetInt("SpeedSlotsUsed", 0));
+        }
+        
+        followMouse.SetSpeed(currentSpeed);
     }
 
     void UpdateHealthBar()
@@ -47,6 +75,14 @@ public class PlayerManager : MonoBehaviour
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             playerTakesDamage(1);
+        }
+
+        //!!!! TESTING PURPOSES ONLY, REMOVE LATER
+        // enter to increase coin count by 1
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 1);
+            coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
         }
     }
 }
