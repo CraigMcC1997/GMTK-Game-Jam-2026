@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 3403140255039756889}
   - component: {fileID: 2301134509760797197}
   - component: {fileID: 8297686314627545362}
+  - component: {fileID: 6015774592644189754}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -329,3 +330,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4202df7aabb0714c99b3f04ddb9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &6015774592644189754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588395842275644466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f187b45f7c972979d33b526d6248f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  shieldRenderer: {fileID: 3403140255039756889}
+  pulseSpeed: 3
+  minAlpha: 0.15
+  maxAlpha: 0.45
