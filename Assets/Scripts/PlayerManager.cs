@@ -11,11 +11,10 @@ public class PlayerManager : MonoBehaviour
 
     public TMP_Text coinsText;
     public KeysManager keysManager;
+    public ShieldManager shield;
 
     int currentSpeed;
     int currentShield;
-
-    Transform shield;
 
     public FollowMouse followMouse;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,15 +22,7 @@ public class PlayerManager : MonoBehaviour
     {
         SetHealthValue();
         SetSpeedValue();
-
-        currentShield = 2 * PlayerPrefs.GetInt("ShieldSlotsUsed", 0);
-
-        shield = transform.Find("Shield");
-        if (shield != null)
-        {
-            shield.gameObject.SetActive(false);
-        }
-
+        SetShieldValue();
     }
 
     void SetHealthValue()
@@ -64,6 +55,19 @@ public class PlayerManager : MonoBehaviour
         followMouse.SetSpeed(currentSpeed);
     }
 
+    void SetShieldValue()
+    {
+        // no Shield, don't allow use.
+        if (PlayerPrefs.GetInt("ShieldSlotsUsed", 0) == 0)
+        {
+            currentShield = 0;
+        }
+        else
+        {
+            currentShield = 2 * PlayerPrefs.GetInt("ShieldSlotsUsed", 0);
+        }
+    }
+
     void UpdateHealthBar()
     {
         healthBar.value = currentHealth;
@@ -81,13 +85,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Spikes"))
         {
-            if (shield.gameObject.activeSelf)
+            if (!shield.gameObject.activeSelf)
             {
-                //TODO: Add Shield health, and reduce shield health instead of player health
-                shield.gameObject.SetActive(false);
-                return; // Shield absorbs the damage, exit the function
+                playerTakesDamage(1);
             }
-            playerTakesDamage(1);
         }
 
         if (collision.gameObject.name == "Key")
@@ -107,9 +108,13 @@ public class PlayerManager : MonoBehaviour
             playerTakesDamage(1);
         }
 
+        // Activate shield.
         if (Keyboard.current.sKey.wasPressedThisFrame)
         {
-            shield.gameObject.SetActive(!shield.gameObject.activeSelf);
+            if (PlayerPrefs.GetInt("ShieldSlotsUsed", 0) > 0)
+            {
+                shield.gameObject.SetActive(true);
+            }
         }
 
 
