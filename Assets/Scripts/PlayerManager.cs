@@ -14,7 +14,8 @@ public class PlayerManager : MonoBehaviour
     public ShieldManager shield;
 
     int currentSpeed;
-    int currentShield;
+    int currentShield = 0;
+    int shieldsUsed = 0;
 
     public FollowMouse followMouse;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -111,9 +112,17 @@ public class PlayerManager : MonoBehaviour
         // Activate shield.
         if (Keyboard.current.sKey.wasPressedThisFrame)
         {
-            if (PlayerPrefs.GetInt("ShieldSlotsUsed", 0) > 0)
+            if (PlayerPrefs.GetInt("numShields", 0) > 0)
             {
-                shield.gameObject.SetActive(true);
+                if (shieldsUsed < PlayerPrefs.GetInt("numShields", 0))
+                {
+                    shieldsUsed++;
+                    shield.gameObject.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("No more shields available.");
+                }
             }
         }
 

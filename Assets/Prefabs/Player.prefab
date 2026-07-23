@@ -188,6 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   healthBar: {fileID: 0}
   coinsText: {fileID: 0}
+  keysManager: {fileID: 0}
+  shield: {fileID: 0}
   followMouse: {fileID: 0}
 --- !u!96 &8249252661411796509
 TrailRenderer:
@@ -239,7 +241,7 @@ TrailRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Time: 0.4
-  m_PreviewTimeScale: 0
+  m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -450,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4202df7aabb0714c99b3f04ddb9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  activeTime: 3
 --- !u!114 &6015774592644189754
 MonoBehaviour:
   m_ObjectHideFlags: 0

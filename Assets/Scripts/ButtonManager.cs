@@ -125,10 +125,36 @@ public class ButtonManager : MonoBehaviour
         shieldUpgradeSlotsUsed++;
         PlayerPrefs.SetInt("ShieldSlotsUsed", shieldUpgradeSlotsUsed);
 
+        // if first shield slot is purchased, set numShields to 1
+        if (PlayerPrefs.GetInt("ShieldSlotsUsed", 0) == 1)
+        {
+            PlayerPrefs.SetInt("numShields", 1);
+        }
+
         for (int i = 0; i < shieldUpgradeSlotsUsed; i++)
         {
             shieldSlotsManager.setPurchasedColor(i);
         }
+    }
+
+    public void ExtraShield()
+    {
+        if (PlayerPrefs.GetInt("numShields", 0) >= 2)
+        {
+            Debug.Log("Already have max number of shields.");
+            return; // already have max number of shields, exit the function
+        }
+
+        int SpendValue = 100; // cost to upgrade health slot
+        if (!Spend(SpendValue))
+        {
+            return; // not enough coins, exit the function
+        }
+
+        PlayerPrefs.SetInt("numShields", 2);
+
+        //disable button now
+        gameObject.SetActive(false);
     }
 
     public void LoadGame()

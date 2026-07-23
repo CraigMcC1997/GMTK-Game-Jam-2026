@@ -25,6 +25,11 @@ public class ShieldManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public int GetMaxShields()
+    {
+        return PlayerPrefs.GetInt("numShields", 0);
+    }
+
     // Update is called once per frame
     void Update()
     {
