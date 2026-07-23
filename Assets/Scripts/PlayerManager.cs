@@ -81,6 +81,12 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Spikes"))
         {
+            if (shield.gameObject.activeSelf)
+            {
+                //TODO: Add Shield health, and reduce shield health instead of player health
+                shield.gameObject.SetActive(false);
+                return; // Shield absorbs the damage, exit the function
+            }
             playerTakesDamage(1);
         }
 
