@@ -9,6 +9,9 @@ public class ButtonManager : MonoBehaviour
     public HealthSlotsManager healthSlotsManager;
     public SpeedSlotsManager speedSlotsManager;
     public ShieldSlotsManager shieldSlotsManager;
+    public BombTimeSlotsSpawner bombTimeSlotsSpawner;
+    public BombRangeSlotsSpawner bombRangeSlotsSpawner;
+
 
     public TMP_Text coinsText;
     public TMP_Text attemptsText;
@@ -31,11 +34,17 @@ public class ButtonManager : MonoBehaviour
             PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
             PlayerPrefs.SetInt("numShields", 0);
             PlayerPrefs.SetInt("Attempts", 0);
-            attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
+            PlayerPrefs.SetInt("BombTimeSlotsUsed", 0);
+            PlayerPrefs.SetInt("BombRangeSlotsUsed", 0);
+            PlayerPrefs.SetInt("CoinCount", 0);
+            PlayerPrefs.SetInt("numBombs", 0);
 
+            attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
             UpdateHealthSlots();
             UpdateSpeedSlots();
             UpdateShieldSlots();
+            UpdateBombTimeSlots();
+            UpdateBombRangeSlots();
         }
     }
 
@@ -66,7 +75,6 @@ public class ButtonManager : MonoBehaviour
             return; // not enough coins, exit the function
         }
         
-        List<GameObject> healthSlots = healthSlotsManager.GetHealthSlots(); // get slots to update
         int healthUpgradeSlotsUsed = PlayerPrefs.GetInt("HealthSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
         if (healthUpgradeSlotsUsed >= healthSlotsManager.GetMaxHealth())
@@ -86,13 +94,12 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateSpeedSlots()
     {
-        int SpendValue = 10; // cost to upgrade health slot
+        int SpendValue = 10; // cost to upgrade speed slot
         if (!Spend(SpendValue))
         {
             return; // not enough coins, exit the function
         }
-        
-        List<GameObject> speedSlots = speedSlotsManager.GetSpeedSlots(); // get slots to update
+    
         int speedUpgradeSlotsUsed = PlayerPrefs.GetInt("SpeedSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
         if (speedUpgradeSlotsUsed >= speedSlotsManager.GetMaxSpeed())
@@ -112,14 +119,12 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateShieldSlots()
     {
-        int SpendValue = 10; // cost to upgrade health slot
+        int SpendValue = 10; // cost to upgrade shield slot
         if (!Spend(SpendValue))
         {
             return; // not enough coins, exit the function
         }
         
-
-        List<GameObject> shieldSlots = shieldSlotsManager.GetShieldSlots(); // get slots to update
         int shieldUpgradeSlotsUsed = PlayerPrefs.GetInt("ShieldSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
         if (shieldUpgradeSlotsUsed >= shieldSlotsManager.GetMaxShield())
@@ -143,6 +148,56 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+    public void UpdateBombTimeSlots()
+    {
+        int SpendValue = 10; // cost to upgrade bomb time slot
+        if (!Spend(SpendValue))
+        {
+            return; // not enough coins, exit the function
+        }
+        
+        int bombTimeUpgradeSlotsUsed = PlayerPrefs.GetInt("BombTimeSlotsUsed", 0); // get number of slots used from PlayerPrefs
+
+        if (bombTimeUpgradeSlotsUsed >= bombTimeSlotsSpawner.GetMaxBombTime())
+        {
+            Debug.Log("All bomb time slots are already used.");
+            return;
+        }
+
+        bombTimeUpgradeSlotsUsed++;
+        PlayerPrefs.SetInt("BombTimeSlotsUsed", bombTimeUpgradeSlotsUsed);
+
+        for (int i = 0; i < bombTimeUpgradeSlotsUsed; i++)
+        {
+            bombTimeSlotsSpawner.setPurchasedColor(i);
+        }
+    }
+
+    public void UpdateBombRangeSlots()
+    {
+        int SpendValue = 10; // cost to upgrade bomb range slot
+        if (!Spend(SpendValue))
+        {
+            return; // not enough coins, exit the function
+        }
+
+        int bombRangeUpgradeSlotsUsed = PlayerPrefs.GetInt("BombRangeSlotsUsed", 0); // get number of slots used from PlayerPrefs
+
+        if (bombRangeUpgradeSlotsUsed >= bombRangeSlotsSpawner.GetMaxBombRange())
+        {
+            Debug.Log("All bomb range slots are already used.");
+            return;
+        }
+
+        bombRangeUpgradeSlotsUsed++;
+        PlayerPrefs.SetInt("BombRangeSlotsUsed", bombRangeUpgradeSlotsUsed);
+
+        for (int i = 0; i < bombRangeUpgradeSlotsUsed; i++)
+        {
+            bombRangeSlotsSpawner.setPurchasedColor(i);
+        }
+    }
+
     public void ExtraShield()
     {
         if (PlayerPrefs.GetInt("numShields", 0) >= 2)
@@ -151,13 +206,33 @@ public class ButtonManager : MonoBehaviour
             return; // already have max number of shields, exit the function
         }
 
-        int SpendValue = 100; // cost to upgrade health slot
+        int SpendValue = 100; // cost to upgrade extra shield
         if (!Spend(SpendValue))
         {
             return; // not enough coins, exit the function
         }
 
         PlayerPrefs.SetInt("numShields", 2);
+
+        //disable button now
+        gameObject.SetActive(false);
+    }
+
+    public void buyBombs()
+    {
+        if (PlayerPrefs.GetInt("numBombs", 0) >= 3)
+        {
+            Debug.Log("Already have max number of bombs.");
+            return; // already have max number of bombs, exit the function
+        }
+
+        int SpendValue = 100; // cost to upgrade extra bomb
+        if (!Spend(SpendValue))
+        {
+            return; // not enough coins, exit the function
+        }
+
+        PlayerPrefs.SetInt("numBombs", PlayerPrefs.GetInt("numBombs", 0) + 1);
 
         //disable button now
         gameObject.SetActive(false);
