@@ -14,6 +14,7 @@ public class DeathManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject TimerUI;
     public AnimationCurve popCurve;
+    public LevelLoader levelLoader; // Reference to the LevelLoader script
  
     void Start()
     {
@@ -33,7 +34,7 @@ public class DeathManager : MonoBehaviour
         }
 
         TimerUI.SetActive(false);
-        SceneManager.LoadScene("Scenes/Upgrades Window");
+        levelLoader.LoadUpgrades();
     }
 
     IEnumerator PopText()

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public LevelLoader levelLoader;
 
     void Start()
     {
@@ -41,11 +42,11 @@ public class PauseMenu : MonoBehaviour
     public void LoadUpgradesScreen()
     {
         Resume();
-        SceneManager.LoadScene("Scenes/Upgrades Window");
+        levelLoader.LoadUpgrades();
     }
 
     public void ExitGame()
     {
-        SceneManager.LoadScene("Scenes/TitleScene");
+        levelLoader.LoadTitle();
     }
 }

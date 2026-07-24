@@ -12,6 +12,7 @@ public class ButtonManager : MonoBehaviour
 
     public TMP_Text coinsText;
     public TMP_Text attemptsText;
+    public LevelLoader levelLoader;
     
 
     void Start()
@@ -164,6 +165,6 @@ public class ButtonManager : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("Scenes/Prototype Level");
+        levelLoader.LoadGame();
     }
 }

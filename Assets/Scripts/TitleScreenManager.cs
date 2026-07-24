@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenManager : MonoBehaviour
 {
+    public LevelLoader levelLoader;
     public void StartGame()
     {
-        SceneManager.LoadScene("Scenes/Prototype Level");
+       levelLoader.LoadGame();
     }
 
     public void ExitGame()

@@ -12,6 +12,7 @@ public class TimesUpManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject IntroTimerUI;
     public AnimationCurve popCurve;
+    public LevelLoader levelLoader;
  
     void Start()
     {
@@ -30,7 +31,7 @@ public class TimesUpManager : MonoBehaviour
         }
 
         IntroTimerUI.SetActive(false);
-        SceneManager.LoadScene("Scenes/Upgrades Window");
+        levelLoader.LoadUpgrades();
     }
 
     IEnumerator PopText()
