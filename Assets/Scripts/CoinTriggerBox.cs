@@ -3,7 +3,7 @@ using UnityEngine;
 public class CoinTriggerBox : MonoBehaviour
 {
     public CoinManager coinManager;
-    public int value = 1;
+    public int value = 10;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -5,7 +5,7 @@ public class CountDownTimer : MonoBehaviour
 {
     public TMP_Text timerText;
     public GameObject TimesUpScreen; // Reference to the TimesUpManager script
-    public float remainingTime = 15f;
+    public float remainingTime = 30f;
 
     public Color normalColor = Color.white;
     public Color warningColor = Color.red;

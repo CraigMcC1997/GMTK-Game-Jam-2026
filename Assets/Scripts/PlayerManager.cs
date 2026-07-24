@@ -100,7 +100,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.name == "Key")
+        if (collision.gameObject.CompareTag("Key"))
         {
             Destroy(collision.gameObject);
             keysManager.CollectedKey();
@@ -117,7 +117,7 @@ public class PlayerManager : MonoBehaviour
 
         if (other.CompareTag("Coin"))
         {
-            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 1);
+            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 10);
             coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
             Destroy(other.gameObject);
         }
