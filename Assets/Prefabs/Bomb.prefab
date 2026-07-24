@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929e42a1053bac1208bd1ac1ba61dfb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  fuseTime: 5
+  fuseTime: 10
   slowFlashRate: 0.5
   fastFlashRate: 0.05
 --- !u!1 &5314544355386227618

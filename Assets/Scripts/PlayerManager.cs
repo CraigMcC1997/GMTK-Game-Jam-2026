@@ -147,7 +147,7 @@ public class PlayerManager : MonoBehaviour
         // enter to increase coin count by 1
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {
-            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 10);
+            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 500);
             coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
         }
         if (Keyboard.current.rKey.wasPressedThisFrame)

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     [Header("Fuse")]
-    [SerializeField] private float fuseTime = 5f;
+    [SerializeField] private float fuseTime = 10f;
 
     [Header("Flashing")]
     [SerializeField] private float slowFlashRate = 0.5f;
@@ -22,7 +22,8 @@ public class Bomb : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        timer = fuseTime;
+        // fuse gets shorter as player upgrades bomb timer        
+        timer = fuseTime - (PlayerPrefs.GetInt("BombTimeSlotsUsed", 0) / 1.5f); // get fuse time from PlayerPrefs
         currentFlashRate = slowFlashRate;
     }
 

@@ -39,6 +39,7 @@ public class ButtonManager : MonoBehaviour
             PlayerPrefs.SetInt("BombRangeSlotsUsed", 0);
             PlayerPrefs.SetInt("CoinCount", 0);
             PlayerPrefs.SetInt("numBombs", 0);
+            PlayerPrefs.SetInt("KeyCount", 0);
 
             attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
             UpdateHealthSlots();
