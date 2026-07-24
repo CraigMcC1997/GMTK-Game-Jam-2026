@@ -56,7 +56,8 @@ public class ActivateButtons : MonoBehaviour
     {
         if (!ShieldUpgradebutton.interactable)
         {
-            ActivateShieldUpgradeButton();
+            if (PlayerPrefs.GetInt("numShields", 0) > 0)
+                ActivateShieldUpgradeButton();
         }
 
         if (PlayerPrefs.GetInt("numShields", 0) >= 2)
@@ -69,7 +70,8 @@ public class ActivateButtons : MonoBehaviour
     {
         if (!BombUpgradebutton_time.interactable && !BombUpgradebutton_range.interactable)
         {
-            ActivateBombUpgradeButtons();
+            if (PlayerPrefs.GetInt("numBombs", 0) > 0)
+                ActivateBombUpgradeButtons();
         }
 
         if (PlayerPrefs.GetInt("numBombs", 0) >= 3)
