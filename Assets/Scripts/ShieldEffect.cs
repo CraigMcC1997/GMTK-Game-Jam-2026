@@ -32,12 +32,6 @@ public class ShieldEffect : MonoBehaviour
         // Slight size pulse
         float scale = 1 + Mathf.Sin(Time.time * pulseSpeed) * 0.03f;
         transform.localScale = baseScale * scale;
-
-        //!!!! TESTING PURPOSES ONLY, REMOVE LATER
-        if (Keyboard.current.hKey.wasPressedThisFrame)
-        {
-            ShieldHit();
-        }
     }
 
     public void ShieldHit()

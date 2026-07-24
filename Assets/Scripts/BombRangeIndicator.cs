@@ -2,23 +2,21 @@ using UnityEngine;
 
 public class BombRangeIndicator : MonoBehaviour
 {
-    // int bombRange;
-    // void Start()
-    // {
-    //    SetBombRange();
-    // }
+    int bombRange;
+    void Start()
+    {
+       SetBombRange();
+    }
 
-    // void SetBombRange()
-    // {
-    //     if (PlayerPrefs.GetInt("bombRangeSlotsUsed", 0) == 0)
-    //     {
-    //         bombRange = 0;
-    //     }
-    //     else
-    //     {
-    //         bombRange = 2 * PlayerPrefs.GetInt("bombRangeSlotsUsed", 0);
-    //     }
+    void SetBombRange()
+    {
+        int slotsUsed = PlayerPrefs.GetInt("BombRangeSlotsUsed", 0);
+        Debug.Log($"slotsUsed = {slotsUsed}");
 
-    //     transform.localScale = new Vector3(bombRange, bombRange, 1);
-    // }
+        bombRange = 2 + (slotsUsed * 2);
+
+        Debug.Log($"bombRange = {bombRange}");
+
+        transform.localScale = new Vector3(bombRange, bombRange, 1f);
+    }
 }
