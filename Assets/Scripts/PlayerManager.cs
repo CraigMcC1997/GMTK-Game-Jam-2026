@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -106,6 +107,14 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("End Flag"))
+        {
+            Debug.Log("Level Completed!");
+            SceneManager.LoadScene("Scenes/WinScene");
+        }
+    }
     
     // Update is called once per frame
     void Update()
