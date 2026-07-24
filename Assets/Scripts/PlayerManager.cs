@@ -114,6 +114,13 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Level Completed!");
             SceneManager.LoadScene("Scenes/WinScene");
         }
+
+        if (other.CompareTag("Coin"))
+        {
+            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 1);
+            coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
+            Destroy(other.gameObject);
+        }
     }
     
     // Update is called once per frame
