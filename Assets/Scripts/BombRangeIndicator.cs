@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class BombRangeIndicator : MonoBehaviour
 {
-    int bombRange;
+    float bombRange;
     public List<Collider2D> ObjectsInRange = new();
     void Start()
     {
@@ -15,7 +15,7 @@ public class BombRangeIndicator : MonoBehaviour
         int slotsUsed = PlayerPrefs.GetInt("BombRangeSlotsUsed", 0);
         Debug.Log($"slotsUsed = {slotsUsed}");
 
-        bombRange = 2 + (slotsUsed * 2);
+        bombRange = 2 + (slotsUsed * 0.5f); // base range of 2, increase by 0.5 for each slot used
 
         Debug.Log($"bombRange = {bombRange}");
 

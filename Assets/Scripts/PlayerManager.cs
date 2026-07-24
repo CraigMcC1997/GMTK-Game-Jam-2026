@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     public Slider healthBar;
 
     public TMP_Text coinsText;
+    
     public KeysManager keysManager;
     public ShieldManager shield;
 

@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.07, y: -0.29, z: 0}
-  m_LocalScale: {x: 0.68867, y: 0.68867, z: 0.68867}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.6324898, y: 1.6324898, z: 1.6324898}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 554481173666570580}
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: -2613247888821195678, guid: d6a2aa5c010bfee5cba8dd6153cd3686, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -202,8 +202,8 @@ Transform:
   m_GameObject: {fileID: 5314544355386227618}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.7471, y: 4.7471, z: 4.7471}
+  m_LocalPosition: {x: -0.00000064686, y: 0.000000026531, z: 0}
+  m_LocalScale: {x: 1.5389104, y: 1.5389104, z: 1.5389104}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6495256183303765176}
