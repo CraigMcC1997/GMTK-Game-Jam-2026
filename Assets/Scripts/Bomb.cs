@@ -81,10 +81,16 @@ public class Bomb : MonoBehaviour
 
         foreach (Collider2D obj in objects)
         {
-            if (obj.name != "Walls")
+            if (obj.name != "Walls" && obj.name != "Player")
             {
                 Destroy(obj.gameObject);
             }
+
+            if (obj.name == "Player")
+            {
+                obj.GetComponent<PlayerManager>().playerTakesDamage(5);
+            }
+
         }
     }
 
