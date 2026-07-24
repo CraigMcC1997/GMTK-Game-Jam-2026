@@ -1,15 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class DoorManager : MonoBehaviour
 {
     private Animator doorAnimator;
     public KeysManager keysManager; // Reference to the KeysManager script
     public List<GameObject> UnlockIcon; // Reference to the unlock icon GameObject
+
+    public TMP_Text unlockText; // Reference to the TMP_Text component for displaying unlock status
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         doorAnimator = GetComponent<Animator>();
+        unlockText.gameObject.SetActive(false); // Hide the unlock text initially
         UnlockIcon[0].GetComponent<Renderer>().material.color = Color.red; // Initial color
         UnlockIcon[1].GetComponent<Renderer>().material.color = Color.red; // Initial color
     }
@@ -38,10 +42,15 @@ public class DoorManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("No keys available to open the door.");
-                return; // Exit if no keys are available
+                unlockText.gameObject.SetActive(true);
             }
             
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            unlockText.gameObject.SetActive(false); // Hide the unlock text when the player exits the trigger
     }
 }
