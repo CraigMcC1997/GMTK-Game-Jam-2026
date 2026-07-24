@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 
 public class Bomb : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class Bomb : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private Tilemap destructibleTilemap;
+    
+    [SerializeField] private CircleCollider2D explosionArea;
+
     private float timer;
     private float flashTimer;
     private float currentFlashRate;
@@ -21,6 +27,7 @@ public class Bomb : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        destructibleTilemap = GameObject.Find("Walls").GetComponent<Tilemap>();
 
         // fuse gets shorter as player upgrades bomb timer        
         timer = fuseTime - (PlayerPrefs.GetInt("BombTimeSlotsUsed", 0) / 1.5f); // get fuse time from PlayerPrefs
@@ -54,17 +61,61 @@ public class Bomb : MonoBehaviour
         }
     }
 
+    
     void Explode()
     {
-        spriteRenderer.enabled = true;
-
-        // TODO:
-        // Play explosion animation
-        // Damage nearby enemies
-        // Spawn particles
-        // Destroy walls
-        // Play sound
+        DestroyTilesInRange();
+        DestroyObjectsInRange();
 
         Destroy(gameObject);
+    }
+
+    private void DestroyObjectsInRange()
+    {
+        float radius = explosionArea.radius * explosionArea.transform.lossyScale.x;
+
+        Collider2D[] objects = Physics2D.OverlapCircleAll(
+            explosionArea.transform.position,
+            radius
+        );
+
+        foreach (Collider2D obj in objects)
+        {
+            if (obj.name != "Walls")
+            {
+                Destroy(obj.gameObject);
+            }
+        }
+    }
+
+
+    private void DestroyTilesInRange()
+    {
+        Bounds bounds = explosionArea.bounds;
+
+        Vector3Int minCell = destructibleTilemap.WorldToCell(bounds.min);
+        Vector3Int maxCell = destructibleTilemap.WorldToCell(bounds.max);
+
+        float radius = explosionArea.radius * explosionArea.transform.lossyScale.x;
+        Vector2 explosionCenter = explosionArea.transform.position;
+
+        for (int x = minCell.x; x <= maxCell.x; x++)
+        {
+            for (int y = minCell.y; y <= maxCell.y; y++)
+            {
+                Vector3Int cell = new Vector3Int(x, y, 0);
+
+                if (!destructibleTilemap.HasTile(cell))
+                    continue;
+
+                Vector2 tilePosition = destructibleTilemap.GetCellCenterWorld(cell);
+
+                // Only remove tiles actually inside the circle
+                if (Vector2.Distance(explosionCenter, tilePosition) <= radius)
+                {
+                    destructibleTilemap.SetTile(cell, null);
+                }
+            }
+        }
     }
 }
