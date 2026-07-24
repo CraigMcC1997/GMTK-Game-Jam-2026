@@ -16,6 +16,8 @@ public class ButtonManager : MonoBehaviour
 
     public TMP_Text coinsText;
     public TMP_Text attemptsText;
+    public TMP_Text bombsRemainingText;
+    public TMP_Text shieldsRemainingText;
     public LevelLoader levelLoader;
     
 
@@ -23,6 +25,8 @@ public class ButtonManager : MonoBehaviour
     {
         coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
         attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
+        bombsRemainingText.text = "Remaining: " + (3 - PlayerPrefs.GetInt("numBombs", 0)).ToString();
+        shieldsRemainingText.text = "Remaining: " + (2 - PlayerPrefs.GetInt("numShields", 0)).ToString();
     }
 
     void Update()
@@ -177,18 +181,18 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateBombRangeSlots()
     {
-        int SpendValue = 10; // cost to upgrade bomb range slot
-        if (!Spend(SpendValue))
-        {
-            return; // not enough coins, exit the function
-        }
-
         int bombRangeUpgradeSlotsUsed = PlayerPrefs.GetInt("BombRangeSlotsUsed", 0); // get number of slots used from PlayerPrefs
 
         if (bombRangeUpgradeSlotsUsed >= bombRangeSlots.GetMaxSlots())
         {
             Debug.Log("All bomb range slots are already used.");
             return;
+        }
+
+        int SpendValue = 10; // cost to upgrade bomb range slot
+        if (!Spend(SpendValue))
+        {
+            return; // not enough coins, exit the function
         }
 
         bombRangeUpgradeSlotsUsed++;
@@ -214,10 +218,8 @@ public class ButtonManager : MonoBehaviour
             return; // not enough coins, exit the function
         }
 
-        PlayerPrefs.SetInt("numShields", 2);
-
-        //disable button now
-        gameObject.SetActive(false);
+        PlayerPrefs.SetInt("numShields", PlayerPrefs.GetInt("numShields", 0) + 1);
+        shieldsRemainingText.text = "Remaining: " + (2 - PlayerPrefs.GetInt("numShields", 0)).ToString();
     }
 
     public void buyBombs()
@@ -235,9 +237,7 @@ public class ButtonManager : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("numBombs", PlayerPrefs.GetInt("numBombs", 0) + 1);
-
-        //disable button now
-        gameObject.SetActive(false);
+        bombsRemainingText.text = "Remaining: " + (3 - PlayerPrefs.GetInt("numBombs", 0)).ToString();
     }
 
     public void LoadGame()

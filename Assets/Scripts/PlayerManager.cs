@@ -47,11 +47,11 @@ public class PlayerManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("SpeedSlotsUsed", 0) == 0)
         {
-            currentSpeed = 5;
+            currentSpeed = 8;
         }
         else
         {
-            currentSpeed = 5 + (2 * PlayerPrefs.GetInt("SpeedSlotsUsed", 0));
+            currentSpeed = 8 + (2 * PlayerPrefs.GetInt("SpeedSlotsUsed", 0));
         }
         
         followMouse.SetSpeed(currentSpeed);
@@ -144,15 +144,10 @@ public class PlayerManager : MonoBehaviour
         }
 
 
-        // enter to increase coin count by 1
+        // !!!! TMP enter to increase coin count by 10
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {
             PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 500);
-            coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
-        }
-        if (Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            PlayerPrefs.SetInt("CoinCount", 0);
             coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
         }
     }
