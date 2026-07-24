@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 
 public class ButtonManager : MonoBehaviour
 {
-    public HealthSlotsManager healthSlotsManager;
-    public SpeedSlotsManager speedSlotsManager;
-    public ShieldSlotsManager shieldSlotsManager;
-    public BombTimeSlotsSpawner bombTimeSlotsSpawner;
-    public BombRangeSlotsSpawner bombRangeSlotsSpawner;
+    public UIUpgradeSlotsManager healthSlots;
+    public UIUpgradeSlotsManager speedSlots;
+    public UIUpgradeSlotsManager shieldSlots;
+
+    public UIUpgradeSlotsManager bombTimeSlots;
+    public UIUpgradeSlotsManager bombRangeSlots;
 
 
     public TMP_Text coinsText;
@@ -77,7 +78,7 @@ public class ButtonManager : MonoBehaviour
         
         int healthUpgradeSlotsUsed = PlayerPrefs.GetInt("HealthSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
-        if (healthUpgradeSlotsUsed >= healthSlotsManager.GetMaxHealth())
+        if (healthUpgradeSlotsUsed >= healthSlots.GetMaxSlots())
         {
             Debug.Log("All health slots are already used.");
             return;
@@ -88,7 +89,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < healthUpgradeSlotsUsed; i++)
         {
-            healthSlotsManager.setPurchasedColor(i);
+            healthSlots.setPurchasedColor(i, Color.green);
         }
     }
 
@@ -102,7 +103,7 @@ public class ButtonManager : MonoBehaviour
     
         int speedUpgradeSlotsUsed = PlayerPrefs.GetInt("SpeedSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
-        if (speedUpgradeSlotsUsed >= speedSlotsManager.GetMaxSpeed())
+        if (speedUpgradeSlotsUsed >= speedSlots.GetMaxSlots())
         {
             Debug.Log("All speed slots are already used.");
             return;
@@ -113,7 +114,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < speedUpgradeSlotsUsed; i++)
         {
-            speedSlotsManager.setPurchasedColor(i);
+            speedSlots.setPurchasedColor(i, Color.blue);
         }
     }
 
@@ -127,7 +128,7 @@ public class ButtonManager : MonoBehaviour
         
         int shieldUpgradeSlotsUsed = PlayerPrefs.GetInt("ShieldSlotsUsed", 0); // get number of slots used from PlayerPrefs
         
-        if (shieldUpgradeSlotsUsed >= shieldSlotsManager.GetMaxShield())
+        if (shieldUpgradeSlotsUsed >= shieldSlots.GetMaxSlots())
         {
             Debug.Log("All shield slots are already used.");
             return;
@@ -144,7 +145,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < shieldUpgradeSlotsUsed; i++)
         {
-            shieldSlotsManager.setPurchasedColor(i);
+            shieldSlots.setPurchasedColor(i, Color.yellow);
         }
     }
 
@@ -158,7 +159,7 @@ public class ButtonManager : MonoBehaviour
         
         int bombTimeUpgradeSlotsUsed = PlayerPrefs.GetInt("BombTimeSlotsUsed", 0); // get number of slots used from PlayerPrefs
 
-        if (bombTimeUpgradeSlotsUsed >= bombTimeSlotsSpawner.GetMaxBombTime())
+        if (bombTimeUpgradeSlotsUsed >= bombTimeSlots.GetMaxSlots())
         {
             Debug.Log("All bomb time slots are already used.");
             return;
@@ -169,7 +170,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < bombTimeUpgradeSlotsUsed; i++)
         {
-            bombTimeSlotsSpawner.setPurchasedColor(i);
+            bombTimeSlots.setPurchasedColor(i, Color.red);
         }
     }
 
@@ -183,7 +184,7 @@ public class ButtonManager : MonoBehaviour
 
         int bombRangeUpgradeSlotsUsed = PlayerPrefs.GetInt("BombRangeSlotsUsed", 0); // get number of slots used from PlayerPrefs
 
-        if (bombRangeUpgradeSlotsUsed >= bombRangeSlotsSpawner.GetMaxBombRange())
+        if (bombRangeUpgradeSlotsUsed >= bombRangeSlots.GetMaxSlots())
         {
             Debug.Log("All bomb range slots are already used.");
             return;
@@ -194,7 +195,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < bombRangeUpgradeSlotsUsed; i++)
         {
-            bombRangeSlotsSpawner.setPurchasedColor(i);
+            bombRangeSlots.setPurchasedColor(i, Color.magenta);
         }
     }
 

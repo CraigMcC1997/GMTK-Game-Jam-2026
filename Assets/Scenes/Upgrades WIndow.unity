@@ -470,9 +470,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 134299771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b1e08f689581bd09a5b2a84a6c4317, type: 3}
+  m_Script: {fileID: 11500000, guid: e4f8154a3b84873a5afccc267794e2be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::UIUpgradeSlotsManager
+  upgradeType: Speed
   box: {fileID: 4236957972090485569, guid: a8d5601aca0371707b340992a55f6e76, type: 3}
 --- !u!114 &175212113 stripped
 MonoBehaviour:
@@ -3019,9 +3020,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1029654314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c979b46b66bbbd49388c612bacae06, type: 3}
+  m_Script: {fileID: 11500000, guid: e4f8154a3b84873a5afccc267794e2be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::UIUpgradeSlotsManager
+  upgradeType: BombTime
   box: {fileID: 4236957972090485569, guid: a8d5601aca0371707b340992a55f6e76, type: 3}
 --- !u!4 &1059384771 stripped
 Transform:
@@ -3057,11 +3059,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3679cca7d549c3e13b3f2dfefe157bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  healthSlotsManager: {fileID: 2083910365}
-  speedSlotsManager: {fileID: 134299773}
-  shieldSlotsManager: {fileID: 1757447279}
-  bombTimeSlotsSpawner: {fileID: 1029654316}
-  bombRangeSlotsSpawner: {fileID: 1878712639}
+  healthSlots: {fileID: 2083910368}
+  speedSlots: {fileID: 134299773}
+  shieldSlots: {fileID: 1757447279}
+  bombTimeSlots: {fileID: 1029654316}
+  bombRangeSlots: {fileID: 1878712639}
   coinsText: {fileID: 175212113}
   attemptsText: {fileID: 801530319}
   levelLoader: {fileID: 1006678810}
@@ -3639,9 +3641,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1757447277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d96b6b01bcd43a7a001e86d6605614, type: 3}
+  m_Script: {fileID: 11500000, guid: e4f8154a3b84873a5afccc267794e2be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShieldSlotsManager
+  m_EditorClassIdentifier: Assembly-CSharp::UIUpgradeSlotsManager
+  upgradeType: Shield
   box: {fileID: 4236957972090485569, guid: a8d5601aca0371707b340992a55f6e76, type: 3}
 --- !u!1 &1788141196
 GameObject:
@@ -3966,9 +3969,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1878712637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe092fd46335471f88455253f481c3f7, type: 3}
+  m_Script: {fileID: 11500000, guid: e4f8154a3b84873a5afccc267794e2be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::UIUpgradeSlotsManager
+  upgradeType: BombRange
   box: {fileID: 4236957972090485569, guid: a8d5601aca0371707b340992a55f6e76, type: 3}
 --- !u!1 &1919205351
 GameObject:
@@ -4525,8 +4529,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2083910364}
-  - component: {fileID: 2083910365}
   - component: {fileID: 2083910367}
+  - component: {fileID: 2083910368}
   m_Layer: 5
   m_Name: Health Slots Spawner
   m_TagString: Untagged
@@ -4553,19 +4557,6 @@ RectTransform:
   m_AnchoredPosition: {x: 40.7, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2083910365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083910363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f2de3484c0aba7409916553d218472d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  box: {fileID: 4236957972090485569, guid: a8d5601aca0371707b340992a55f6e76, type: 3}
 --- !u!222 &2083910367
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4574,6 +4565,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083910363}
   m_CullTransparentMesh: 1
+--- !u!114 &2083910368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083910363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f8154a3b84873a5afccc267794e2be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIUpgradeSlotsManager
+  upgradeType: Health
+  box: {fileID: 4236957972090485569, guid: a8d5601aca0371707b340992a55f6e76, type: 3}
 --- !u!1 &2135099953
 GameObject:
   m_ObjectHideFlags: 0

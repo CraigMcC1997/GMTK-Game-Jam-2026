@@ -127,7 +127,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         // Activate shield.
-        if (Keyboard.current.sKey.wasPressedThisFrame)
+        if (Input.GetMouseButtonDown(0))
         {
             if (PlayerPrefs.GetInt("numShields", 0) > 0)
             {
