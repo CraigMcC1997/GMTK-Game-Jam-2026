@@ -36,7 +36,13 @@ public class Bomb : MonoBehaviour
         destructibleTilemap = GameObject.Find("Walls").GetComponent<Tilemap>();
 
         // fuse gets shorter as player upgrades bomb timer        
-        timer = fuseTime - (PlayerPrefs.GetInt("BombTimeSlotsUsed", 0) / 1.5f); // get fuse time from PlayerPrefs
+        timer = fuseTime - (PlayerPrefs.GetInt("BombTimeSlotsUsed", 0) / 2.0f); // get fuse time from PlayerPrefs
+
+        if (timer < 1f)
+        {
+            timer = 0.5f; // minimum fuse time is 0.5 second
+        }
+
         currentFlashRate = slowFlashRate;
     }
 
@@ -89,7 +95,7 @@ public class Bomb : MonoBehaviour
 
         foreach (Collider2D obj in objects)
         {
-            if (obj.name != "Walls" && obj.name != "Player")
+            if (obj.name != "Walls" && obj.name != "Player" && obj.name != "Reinforced")
             {
                 Destroy(obj.gameObject);
             }

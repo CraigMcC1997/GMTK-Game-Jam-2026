@@ -10,11 +10,11 @@ public class ShieldManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public float activeTime = 0f;
+    public float activeTime = 1f;
 
     private void OnEnable()
     {
-        activeTime = PlayerPrefs.GetInt("ShieldSlotsUsed", 0) * 0.5f; // Each shield slot adds 0.5 seconds of active time
+        activeTime = 1f + PlayerPrefs.GetInt("ShieldSlotsUsed", 0) * 0.5f; // Each shield slot adds 0.5 seconds of active time
         StartCoroutine(ShieldTimer());
     }
 
