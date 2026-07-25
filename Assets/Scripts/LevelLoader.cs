@@ -29,6 +29,8 @@ public class LevelLoader : MonoBehaviour
         PlayerPrefs.SetInt("numBombs", 0);
         PlayerPrefs.SetInt("KeyCount", 0);
         PlayerPrefs.SetInt("Attempts", 0);
+        PlayerPrefs.SetInt("ShieldButtonClicked", 0);
+        PlayerPrefs.SetInt("BombButtonClicked", 0);
 
         LoadTitle();
     }

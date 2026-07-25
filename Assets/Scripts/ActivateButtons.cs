@@ -94,11 +94,13 @@ public class ActivateButtons : MonoBehaviour
     void ActivateShieldUpgradeButton()
     {
         ShieldUpgradebutton.interactable = true;
+        PlayerPrefs.SetInt("ShieldButtonClicked", 1);
     }
 
     void ActivateBombUpgradeButtons()
     {
         BombUpgradebutton_time.interactable = true;
         BombUpgradebutton_range.interactable = true;
+        PlayerPrefs.SetInt("BombButtonClicked", 1);
     }
 }
