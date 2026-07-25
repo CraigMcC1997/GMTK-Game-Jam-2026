@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using Unity.Cinemachine;
 
 public class Bomb : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class Bomb : MonoBehaviour
     private Tilemap destructibleTilemap;
     
     [SerializeField] private CircleCollider2D explosionArea;
+    CinemachineImpulseSource impulseSource;
 
     private float timer;
     private float flashTimer;
@@ -23,6 +24,11 @@ public class Bomb : MonoBehaviour
 
     Color normal = Color.white;
     Color warning = new Color(1f, 0.3f, 0.3f);
+
+    void Awake()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
 
     void Start()
     {
@@ -64,6 +70,8 @@ public class Bomb : MonoBehaviour
     
     void Explode()
     {
+        impulseSource.GenerateImpulse();
+        Debug.Log("BOOM! Bomb exploded at " + transform.position);
         DestroyTilesInRange();
         DestroyObjectsInRange();
 
