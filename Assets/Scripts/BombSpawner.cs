@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class BombSpawner : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class BombSpawner : MonoBehaviour
             return; // Exit the Update method if the intro timer is not finished
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
         {
             if (bombsUsed < PlayerPrefs.GetInt("numBombs", 0))
             {

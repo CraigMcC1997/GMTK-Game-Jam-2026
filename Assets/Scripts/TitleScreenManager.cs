@@ -6,7 +6,8 @@ public class TitleScreenManager : MonoBehaviour
     public LevelLoader levelLoader;
     public void StartGame()
     {
-       levelLoader.LoadGame();
+        levelLoader.ResetAll();
+        levelLoader.LoadGame();
     }
 
     public void LoadControls()

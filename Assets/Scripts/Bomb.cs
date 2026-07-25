@@ -18,6 +18,8 @@ public class Bomb : MonoBehaviour
     [SerializeField] private CircleCollider2D explosionArea;
     CinemachineImpulseSource impulseSource;
 
+    public AudioClip bombDropAUDIO;
+
     private float timer;
     private float flashTimer;
     private float currentFlashRate;
@@ -28,6 +30,8 @@ public class Bomb : MonoBehaviour
     void Awake()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(bombDropAUDIO);
     }
 
     void Start()

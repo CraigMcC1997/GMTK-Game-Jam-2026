@@ -17,7 +17,7 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadScene("Scenes/Upgrades Window"));
     }
 
-    public void PlayAgain()
+    public void ResetAll()
     {
         PlayerPrefs.SetInt("HealthSlotsUsed", 0);
         PlayerPrefs.SetInt("SpeedSlotsUsed", 0); 
@@ -31,7 +31,11 @@ public class LevelLoader : MonoBehaviour
         PlayerPrefs.SetInt("Attempts", 0);
         PlayerPrefs.SetInt("ShieldButtonClicked", 0);
         PlayerPrefs.SetInt("BombButtonClicked", 0);
+    }
 
+    public void PlayAgain()
+    {
+        ResetAll();
         LoadTitle();
     }
 

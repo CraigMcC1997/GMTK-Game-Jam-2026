@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FollowMouse : MonoBehaviour
 {
@@ -26,7 +27,11 @@ public class FollowMouse : MonoBehaviour
 
    void Update()
     {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
+
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+        mousePosition = mouseWorldPosition;
     }
 
     void FixedUpdate()

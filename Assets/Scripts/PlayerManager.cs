@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -15,10 +14,16 @@ public class PlayerManager : MonoBehaviour
     public KeysManager keysManager;
     public ShieldManager shield;
     public StartTimer startTimer;
+    public LevelLoader levelLoader;
 
     float currentSpeed;
     int currentShield = 0;
     int shieldsUsed = 0;
+
+    AudioSource audioSource;
+    public AudioClip collectCoinAUDIO;
+    public AudioClip winAUDIO;
+    public AudioClip shieldAUDIO;
 
     public FollowMouse followMouse;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +34,8 @@ public class PlayerManager : MonoBehaviour
         SetShieldValue();
         PlayerPrefs.SetInt("KeyCount", 0);
         PlayerPrefs.SetInt("CoinCount", 0);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void SetHealthValue()
@@ -99,6 +106,7 @@ public class PlayerManager : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Key"))
         {
+            audioSource.PlayOneShot(collectCoinAUDIO);
             Destroy(collision.gameObject);
             keysManager.CollectedKey();
         }
@@ -108,8 +116,9 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.CompareTag("End Flag"))
         {
+            audioSource.PlayOneShot(winAUDIO);
             Debug.Log("Level Completed!");
-            SceneManager.LoadScene("Scenes/WinScene");
+            levelLoader.LoadWinScene();
         }
 
         if (other.CompareTag("Coin"))
@@ -117,6 +126,7 @@ public class PlayerManager : MonoBehaviour
             PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 10);
             coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
             Destroy(other.gameObject);
+            audioSource.PlayOneShot(collectCoinAUDIO);
         }
     }
     
@@ -129,7 +139,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         // Activate shield.
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (PlayerPrefs.GetInt("numShields", 0) > 0)
             {
@@ -137,6 +147,7 @@ public class PlayerManager : MonoBehaviour
                 {
                     shieldsUsed++;
                     shield.gameObject.SetActive(true);
+                    audioSource.PlayOneShot(shieldAUDIO);
                 }
                 else
                 {
@@ -146,11 +157,11 @@ public class PlayerManager : MonoBehaviour
         }
 
 
-        // !!!! TMP enter to increase coin count by 10
-        if (Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 500);
-            coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
-        }
+        // // !!!! TMP enter to increase coin count by 10
+        // if (Keyboard.current.pKey.wasPressedThisFrame)
+        // {
+        //     PlayerPrefs.SetInt("CoinCount", PlayerPrefs.GetInt("CoinCount", 0) + 500);
+        //     coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
+        // }
     }
 }

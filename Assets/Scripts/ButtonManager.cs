@@ -34,29 +34,29 @@ public class ButtonManager : MonoBehaviour
 
     void Update()
     {
-        //!!!!! TESTING PURPOSES ONLY, REMOVE LATER
-        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
-        {
-            PlayerPrefs.SetInt("HealthSlotsUsed", 0);
-            PlayerPrefs.SetInt("SpeedSlotsUsed", 0); 
-            PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
-            PlayerPrefs.SetInt("numShields", 0);
-            PlayerPrefs.SetInt("BombTimeSlotsUsed", 0);
-            PlayerPrefs.SetInt("BombRangeSlotsUsed", 0);
-            PlayerPrefs.SetInt("CoinCount", 0);
-            PlayerPrefs.SetInt("numBombs", 0);
-            PlayerPrefs.SetInt("KeyCount", 0);
-            PlayerPrefs.SetInt("Attempts", 0);
-            PlayerPrefs.SetInt("ShieldButtonClicked", 0);
-            PlayerPrefs.SetInt("BombButtonClicked", 0);
+        // //!!!!! TESTING PURPOSES ONLY, REMOVE LATER
+        // if (Keyboard.current.backspaceKey.wasPressedThisFrame)
+        // {
+        //     PlayerPrefs.SetInt("HealthSlotsUsed", 0);
+        //     PlayerPrefs.SetInt("SpeedSlotsUsed", 0); 
+        //     PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
+        //     PlayerPrefs.SetInt("numShields", 0);
+        //     PlayerPrefs.SetInt("BombTimeSlotsUsed", 0);
+        //     PlayerPrefs.SetInt("BombRangeSlotsUsed", 0);
+        //     PlayerPrefs.SetInt("CoinCount", 0);
+        //     PlayerPrefs.SetInt("numBombs", 0);
+        //     PlayerPrefs.SetInt("KeyCount", 0);
+        //     PlayerPrefs.SetInt("Attempts", 0);
+        //     PlayerPrefs.SetInt("ShieldButtonClicked", 0);
+        //     PlayerPrefs.SetInt("BombButtonClicked", 0);
 
-            attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
-            UpdateHealthSlots();
-            UpdateSpeedSlots();
-            UpdateShieldSlots();
-            UpdateBombTimeSlots();
-            UpdateBombRangeSlots();
-        }
+        //     attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
+        //     UpdateHealthSlots();
+        //     UpdateSpeedSlots();
+        //     UpdateShieldSlots();
+        //     UpdateBombTimeSlots();
+        //     UpdateBombRangeSlots();
+        // }
     }
 
     bool Spend(int value)
