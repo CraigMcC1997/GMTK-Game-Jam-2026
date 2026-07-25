@@ -9,6 +9,11 @@ public class TitleScreenManager : MonoBehaviour
        levelLoader.LoadGame();
     }
 
+    public void LoadControls()
+    {
+        levelLoader.LoadControls();
+    }
+
     public void ExitGame()
     {
         Application.Quit();

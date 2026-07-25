@@ -22,6 +22,11 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadScene("Scenes/TitleScene"));
     }
 
+    public void LoadControls()
+    {
+        StartCoroutine(LoadScene("Scenes/Controls Page"));
+    }
+
     public void LoadWinScene()
     {
         StartCoroutine(LoadScene("Scenes/Win Scene"));
