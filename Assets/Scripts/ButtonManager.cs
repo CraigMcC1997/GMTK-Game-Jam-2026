@@ -19,6 +19,9 @@ public class ButtonManager : MonoBehaviour
     public TMP_Text bombsRemainingText;
     public TMP_Text shieldsRemainingText;
     public LevelLoader levelLoader;
+
+    const int BASIC_UPGRADE_COST = 10;
+    const int PERMA_UPGRADE_COST = 80;
     
 
     void Start()
@@ -38,12 +41,14 @@ public class ButtonManager : MonoBehaviour
             PlayerPrefs.SetInt("SpeedSlotsUsed", 0); 
             PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
             PlayerPrefs.SetInt("numShields", 0);
-            PlayerPrefs.SetInt("Attempts", 0);
             PlayerPrefs.SetInt("BombTimeSlotsUsed", 0);
             PlayerPrefs.SetInt("BombRangeSlotsUsed", 0);
             PlayerPrefs.SetInt("CoinCount", 0);
             PlayerPrefs.SetInt("numBombs", 0);
             PlayerPrefs.SetInt("KeyCount", 0);
+            PlayerPrefs.SetInt("Attempts", 0);
+            PlayerPrefs.SetInt("ShieldButtonClicked", 0);
+            PlayerPrefs.SetInt("BombButtonClicked", 0);
 
             attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
             UpdateHealthSlots();
@@ -75,8 +80,7 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateHealthSlots()
     {
-        int SpendValue = 10; // cost to upgrade health slot
-        if (!Spend(SpendValue))
+        if (!Spend(BASIC_UPGRADE_COST))
         {
             return; // not enough coins, exit the function
         }
@@ -100,8 +104,7 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateSpeedSlots()
     {
-        int SpendValue = 10; // cost to upgrade speed slot
-        if (!Spend(SpendValue))
+        if (!Spend(BASIC_UPGRADE_COST))
         {
             return; // not enough coins, exit the function
         }
@@ -125,8 +128,7 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateShieldSlots()
     {
-        int SpendValue = 10; // cost to upgrade shield slot
-        if (!Spend(SpendValue))
+        if (!Spend(BASIC_UPGRADE_COST))
         {
             return; // not enough coins, exit the function
         }
@@ -156,8 +158,7 @@ public class ButtonManager : MonoBehaviour
 
     public void UpdateBombTimeSlots()
     {
-        int SpendValue = 10; // cost to upgrade bomb time slot
-        if (!Spend(SpendValue))
+        if (!Spend(BASIC_UPGRADE_COST))
         {
             return; // not enough coins, exit the function
         }
@@ -189,8 +190,7 @@ public class ButtonManager : MonoBehaviour
             return;
         }
 
-        int SpendValue = 10; // cost to upgrade bomb range slot
-        if (!Spend(SpendValue))
+        if (!Spend(BASIC_UPGRADE_COST))
         {
             return; // not enough coins, exit the function
         }
@@ -212,8 +212,7 @@ public class ButtonManager : MonoBehaviour
             return; // already have max number of shields, exit the function
         }
 
-        int SpendValue = 100; // cost to upgrade extra shield
-        if (!Spend(SpendValue))
+        if (!Spend(PERMA_UPGRADE_COST))
         {
             return; // not enough coins, exit the function
         }
@@ -230,8 +229,7 @@ public class ButtonManager : MonoBehaviour
             return; // already have max number of bombs, exit the function
         }
 
-        int SpendValue = 100; // cost to upgrade extra bomb
-        if (!Spend(SpendValue))
+        if (!Spend(PERMA_UPGRADE_COST))
         {
             return; // not enough coins, exit the function
         }

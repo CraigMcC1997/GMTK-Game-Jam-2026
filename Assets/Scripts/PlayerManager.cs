@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     public KeysManager keysManager;
     public ShieldManager shield;
 
-    int currentSpeed;
+    float currentSpeed;
     int currentShield = 0;
     int shieldsUsed = 0;
 
@@ -26,6 +26,8 @@ public class PlayerManager : MonoBehaviour
         SetHealthValue();
         SetSpeedValue();
         SetShieldValue();
+        PlayerPrefs.SetInt("KeyCount", 0);
+        PlayerPrefs.SetInt("CoinCount", 0);
     }
 
     void SetHealthValue()
@@ -36,7 +38,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            startingHealth = 2 * PlayerPrefs.GetInt("HealthSlotsUsed", 0);
+            startingHealth = 1 + (PlayerPrefs.GetInt("HealthSlotsUsed", 0) / 2); // Each health slot adds 0.5 hearts, so we divide by 2 to get the number of additional hearts
         }
         
         currentHealth = startingHealth;
@@ -46,14 +48,7 @@ public class PlayerManager : MonoBehaviour
 
     void SetSpeedValue()
     {
-        if (PlayerPrefs.GetInt("SpeedSlotsUsed", 0) == 0)
-        {
-            currentSpeed = 8;
-        }
-        else
-        {
-            currentSpeed = 8 + (2 * PlayerPrefs.GetInt("SpeedSlotsUsed", 0));
-        }
+        currentSpeed = 8 + PlayerPrefs.GetInt("SpeedSlotsUsed", 0);
         
         followMouse.SetSpeed(currentSpeed);
     }
