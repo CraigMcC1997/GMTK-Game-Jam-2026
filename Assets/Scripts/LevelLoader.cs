@@ -17,6 +17,22 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadScene("Scenes/Upgrades Window"));
     }
 
+    public void PlayAgain()
+    {
+        PlayerPrefs.SetInt("HealthSlotsUsed", 0);
+        PlayerPrefs.SetInt("SpeedSlotsUsed", 0); 
+        PlayerPrefs.SetInt("ShieldSlotsUsed", 0);
+        PlayerPrefs.SetInt("numShields", 0);
+        PlayerPrefs.SetInt("BombTimeSlotsUsed", 0);
+        PlayerPrefs.SetInt("BombRangeSlotsUsed", 0);
+        PlayerPrefs.SetInt("CoinCount", 0);
+        PlayerPrefs.SetInt("numBombs", 0);
+        PlayerPrefs.SetInt("KeyCount", 0);
+        PlayerPrefs.SetInt("Attempts", 0);
+
+        LoadTitle();
+    }
+
     public void LoadTitle()
     {
         StartCoroutine(LoadScene("Scenes/TitleScene"));
