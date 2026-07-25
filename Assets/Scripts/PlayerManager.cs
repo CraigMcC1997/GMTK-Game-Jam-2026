@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     
     public KeysManager keysManager;
     public ShieldManager shield;
+    public StartTimer startTimer;
 
     float currentSpeed;
     int currentShield = 0;
@@ -122,6 +123,11 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!startTimer.GetIntroTimerFinished())
+        {
+            return; // Exit the Update method if the intro timer is not finished
+        }
+
         // Activate shield.
         if (Input.GetMouseButtonDown(0))
         {

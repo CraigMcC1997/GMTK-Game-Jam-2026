@@ -47,6 +47,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
+        Resume();
         levelLoader.LoadTitle();
     }
 }
