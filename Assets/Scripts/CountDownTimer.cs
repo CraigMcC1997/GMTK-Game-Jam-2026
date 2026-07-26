@@ -16,10 +16,15 @@ public class CountDownTimer : MonoBehaviour
 
     public StartTimer startTimer; // Reference to the Game Over screen
 
+    public AudioClip clockAUDIO;
+    AudioSource audioSource;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timerText.text = remainingTime.ToString("F2");
+        audioSource = GetComponent<AudioSource>();
     }
 
     public bool stopTimer()
@@ -46,6 +51,7 @@ public class CountDownTimer : MonoBehaviour
             // check for game over condition otherwise countdown the timer
             if (remainingTime <= 0)
             {
+                audioSource.Stop();  // Stop the clock sound when time is up
                 remainingTime = 0;  // Ensure remainingTime doesn't go below 0
                 countdownFinished = true;
                 TimesUpScreen.SetActive(true);
@@ -53,6 +59,10 @@ public class CountDownTimer : MonoBehaviour
             }
             else
             {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(clockAUDIO);
+                }
                 remainingTime -= Time.deltaTime;
             }
 

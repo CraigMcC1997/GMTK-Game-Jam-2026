@@ -81,7 +81,6 @@ public class Bomb : MonoBehaviour
     void Explode()
     {
         impulseSource.GenerateImpulse();
-        Debug.Log("BOOM! Bomb exploded at " + transform.position);
         DestroyTilesInRange();
         DestroyObjectsInRange();
 

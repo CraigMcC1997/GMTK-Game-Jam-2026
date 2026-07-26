@@ -7,8 +7,13 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public LevelLoader levelLoader;
 
+    public AudioClip clickAUDIO;
+    AudioSource audioSource;
+
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         pauseMenuUI.SetActive(false);
     }
 
@@ -29,12 +34,14 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        audioSource.PlayOneShot(clickAUDIO);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void Resume()
     {
+        audioSource.PlayOneShot(clickAUDIO);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
     }

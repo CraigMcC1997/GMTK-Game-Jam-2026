@@ -20,12 +20,17 @@ public class ButtonManager : MonoBehaviour
     public TMP_Text shieldsRemainingText;
     public LevelLoader levelLoader;
 
+    public AudioClip clickAUDIO;
+    AudioSource audioSource;
+
+
     const int BASIC_UPGRADE_COST = 10;
     const int PERMA_UPGRADE_COST = 80;
     
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
         attemptsText.text = "Attempts: " + PlayerPrefs.GetInt("Attempts", 0).ToString();
         bombsRemainingText.text = "Remaining: " + (3 - PlayerPrefs.GetInt("numBombs", 0)).ToString();
@@ -69,11 +74,11 @@ public class ButtonManager : MonoBehaviour
             {
                 coinsText.text = PlayerPrefs.GetInt("CoinCount", 0).ToString();
             }
+            audioSource.PlayOneShot(clickAUDIO);
             return true;
         }
         else
         {
-            Debug.Log("Not enough coins.");
             return false;
         }
     }
@@ -89,7 +94,6 @@ public class ButtonManager : MonoBehaviour
         
         if (healthUpgradeSlotsUsed >= healthSlots.GetMaxSlots())
         {
-            Debug.Log("All health slots are already used.");
             return;
         }
 
@@ -113,7 +117,6 @@ public class ButtonManager : MonoBehaviour
         
         if (speedUpgradeSlotsUsed >= speedSlots.GetMaxSlots())
         {
-            Debug.Log("All speed slots are already used.");
             return;
         }
 
@@ -137,7 +140,6 @@ public class ButtonManager : MonoBehaviour
         
         if (shieldUpgradeSlotsUsed >= shieldSlots.GetMaxSlots())
         {
-            Debug.Log("All shield slots are already used.");
             return;
         }
 
@@ -167,7 +169,6 @@ public class ButtonManager : MonoBehaviour
 
         if (bombTimeUpgradeSlotsUsed >= bombTimeSlots.GetMaxSlots())
         {
-            Debug.Log("All bomb time slots are already used.");
             return;
         }
 
@@ -186,7 +187,6 @@ public class ButtonManager : MonoBehaviour
 
         if (bombRangeUpgradeSlotsUsed >= bombRangeSlots.GetMaxSlots())
         {
-            Debug.Log("All bomb range slots are already used.");
             return;
         }
 
@@ -240,6 +240,7 @@ public class ButtonManager : MonoBehaviour
 
     public void LoadGame()
     {
+        audioSource.PlayOneShot(clickAUDIO);
         levelLoader.LoadGame();
     }
 }

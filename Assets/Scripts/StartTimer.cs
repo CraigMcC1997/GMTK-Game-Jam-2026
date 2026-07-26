@@ -15,6 +15,9 @@ public class StartTimer : MonoBehaviour
     public FollowMouse player; // Reference to the FollowMouse script
     public GameObject pauseMenuUI;
 
+    public AudioClip clickAUDIO;
+    AudioSource audioSource;
+
     public bool GetIntroTimerFinished()
     {
         return IntroTimerFinished || !IntroTimerUI.activeSelf;
@@ -26,7 +29,8 @@ public class StartTimer : MonoBehaviour
         IntroTimerUI.SetActive(true);
         pauseMenuUI.SetActive(false);
         StartCoroutine(ShowCountdown());
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(clickAUDIO);
     }
 
     public IEnumerator ShowCountdown()

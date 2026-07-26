@@ -51,7 +51,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadWinScene()
     {
-        StartCoroutine(LoadScene("Scenes/Win Scene"));
+        StartCoroutine(LoadScene("Scenes/WinScene"));
     }
 
     IEnumerator LoadScene(string sceneName)
